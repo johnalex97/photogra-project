@@ -5,12 +5,13 @@ import './styles/tailwindoutput.css';
 
 import { NavBar } from './components/navbar';
 import { Sections } from './components/sections';
-
+import { HeroSections } from './components/herosection';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
+      <HeroSections />
       <Sections />
     </div>
   );
