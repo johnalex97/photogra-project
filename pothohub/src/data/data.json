@@ -1,0 +1,31 @@
+{
+    "images": 
+      {
+        "hero":
+        {
+            "title": "Hero",
+            "largeImage": "media/images/general/photography.jpg",
+            "smallImage": "media/images/general/photography.jpg"
+        },
+        "food":
+        {
+            "title": "Food",
+            "largeImage": "media/images/food/heroAlimentos.jpg",
+            "smallImage": "media/images/food/heroAlimentos.jpg"
+        },
+        "portrait":
+        {
+            "title": "Food",
+            "largeImage": "media/images/portraits/retratoSeccion.jpg",
+            "smallImage": "media/images/portraits/retratoSeccion.jpg"
+        },
+        "product":
+        {
+            "title": "Food",
+            "largeImage": "media/images/products/prodcutosSeccion.jpg",
+            "smallImage": "media/images/products/prodcutosSeccion.jpg"
+        }
+      }
+    
+  }
+  
