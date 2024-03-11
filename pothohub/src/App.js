@@ -6,6 +6,7 @@ import './styles/tailwindoutput.css';
 import { NavBar } from './components/navbar';
 import { Sections } from './components/sections';
 import { HeroSections } from './components/herosection';
+import { Footer } from './components/footer';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <NavBar />
       <HeroSections />
       <Sections />
+      <Footer />
     </div>
   );
 }
