@@ -6,7 +6,7 @@ export const Sections = (props) => {
   return (
     <div class="grid grid-cols-2 gap-2">
         <div>
-            <img class="h-auto max-w-full rounded-lg" src={props.data.food ? props.data.food.largeImage : "Loading"} alt=""/>
+            <img class="h-auto max-w-full rounded-lg" src={props.data ? (props.data.food ? props.data.food.largeImage : "Loading") : ""} alt=""/>
         </div>
         
         <div class="flex">
@@ -24,11 +24,11 @@ export const Sections = (props) => {
         </div>
 
         <div>
-            <img class="h-auto max-w-full rounded-lg object-contain" src={props.data.portrait ? props.data.portrait.largeImage : "Loading"} alt=""/>
+            <img class="h-auto max-w-full rounded-lg object-contain" src={props.data ? (props.data.portrait ? props.data.portrait.largeImage : "Loading"): ""} alt=""/>
         </div>
 
         <div>
-            <img class="h-auto max-w-full rounded-lg" src={props.data.product ? props.data.product.largeImage : "Loading"} alt=""/>
+            <img class="h-auto max-w-full rounded-lg" src={props.data ? (props.data.product ? props.data.product.largeImage : "Loading") : ""} alt=""/>
         </div>
 
         <div class="flex">

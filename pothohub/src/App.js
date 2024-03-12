@@ -10,10 +10,12 @@ import { Footer } from './components/footer';
 import JsonData from "./data/data.json";
 
 function App() {
-  const [siteData, setSiteData] = useState({});
+
+  const [siteData, setLandingPageData] = useState({});
   useEffect(() => {
-    setSiteData(JsonData);
+    setLandingPageData(JsonData);
   }, []);
+
 
   return (
     <div className="App">

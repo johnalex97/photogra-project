@@ -1,11 +1,10 @@
 import React from "react";
 
 export const HeroSections = (props) => {
-  console.log(props);
   return (
         <div class="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden mb-24">
         <div class="absolute inset-0">
-        <img src={props.data.hero ? props.data.hero.largeImage : "Loading"} alt="Background Image" class="object-cover object-center w-full h-full" />
+        <img src={props.data ? (props.data.hero ? props.data.hero.largeImage : "Loading") : ""} alt="Background Image" class="object-cover object-center w-full h-full" />
         <div class="absolute inset-0 bg-black opacity-50"></div>
         </div>
         
