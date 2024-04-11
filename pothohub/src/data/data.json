@@ -16,15 +16,21 @@
         },
         "portrait":
         {
-            "title": "Food",
+            "title": "Portraits",
             "largeImage": "media/images/portraits/retratoSeccion.jpg",
             "smallImage": "media/images/portraits/retratoSeccion.jpg"
         },
         "product":
         {
-            "title": "Food",
+            "title": "Product",
             "largeImage": "media/images/products/prodcutosSeccion.jpg",
             "smallImage": "media/images/products/prodcutosSeccion.jpg"
+        },
+        "nature":
+        {
+            "title": "Nature",
+            "largeImage": "media/images/nature/natureSeccion.jpg",
+            "smallImage": "media/images/nature/natureSeccion.jpg"
         }
       }
     

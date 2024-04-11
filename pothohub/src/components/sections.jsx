@@ -38,6 +38,16 @@ export const Sections = (props) => {
             </div>
         </div>
 
+        <div class="flex">
+            <div class="m-auto">
+                <h3 class="text-6xl font-bold">Naturaleza</h3>
+                <button>leyenda..</button>
+            </div>
+        </div>
+
+        <div>
+            <img class="h-auto max-w-full rounded-lg" src={props.data ? (props.data.nature ? props.data.nature.largeImage : "Loading") : ""} alt=""/>
+        </div>
     </div>
     );
 };
