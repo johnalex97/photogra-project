@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState, useEffect }  from "react";
 import '../styles/tailwind.css';
 import '../styles/tailwindoutput.css';
+import axios from "axios";
 
 export const Sections = (props) => {
+    const [sections, setSections] = useState([]);
+
+    useEffect(() => {
+      const instance = axios.create({baseURL: 'http://localhost:5000'})
+      instance.get("/api/sections")
+        .then(response => setSections(response.data))
+        .catch(error => console.error(error));
+    }, []);
+
+    console.log(sections);
   return (
     <div class="grid grid-cols-2 gap-2">
         <div>
