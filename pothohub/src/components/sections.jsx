@@ -14,15 +14,15 @@ export const Sections = (props) => {
     }, []);
 
     console.log(sections);
-  return (
-    <div class="grid grid-cols-2 gap-2">
+  const sectionElements = sections.map((sec)=>
+    <div class="grid grid-cols-2 gap-2" >
         <div>
             <img class="h-auto max-w-full rounded-lg" src={props.data ? (props.data.food ? props.data.food.largeImage : "Loading") : ""} alt=""/>
         </div>
         
         <div class="flex">
             <div class="m-auto">
-                <h3 class="text-6xl font-bold">Alimentos</h3>
+                <h3 class="text-6xl font-bold">{sec.name}</h3>
                 <button>leyenda</button>
             </div>
         </div>
@@ -61,4 +61,6 @@ export const Sections = (props) => {
         </div>
     </div>
     );
+
+    return sectionElements;
 };
