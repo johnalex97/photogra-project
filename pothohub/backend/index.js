@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const seed = require('./seeddata/index');
+
+
 mongoose.connect('mongodb://127.0.0.1:27017/Photohub', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -37,3 +40,7 @@ app.get("/api/sections", async (req, res) => {
       res.status(500).send("Server Error");
     }
   });
+
+console.log("seed:");
+console.log(seed);
+  seed();
