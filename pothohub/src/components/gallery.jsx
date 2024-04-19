@@ -1,62 +1,37 @@
-import React from "react";
+import React, { useState, useEffect }  from "react";
 import { useParams } from "react-router-dom";
 import '../styles/tailwind.css';
 import '../styles/tailwindoutput.css';
+import axios from "axios";
+
 
 export const Gallery = (props) => {
+
+    const [sections, setSections] = useState([]);
     const { galleryId } = useParams();
-    console.log(galleryId);
-  return (
-    <div>
-        
+    const images = sections.images;
 
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-    <div class="grid gap-4">
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt=""/>
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" alt=""/>
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" alt=""/>
-        </div>
-    </div>
-    <div class="grid gap-4">
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg" alt=""/>
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg" alt=""/>
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg" alt=""/>
-        </div>
-    </div>
-    <div class="grid gap-4">
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg" alt=""/>
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg" alt=""/>
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg" alt=""/>
-        </div>
-    </div>
-    <div class="grid gap-4">
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg" alt=""/>
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg" alt=""/>
-        </div>
-        <div>
-            <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg" alt=""/>
-        </div>
-    </div>
-</div>
+    useEffect(() => {
+      const instance = axios.create({baseURL: process.env.REACT_APP_BACKEND_BASE_URL})
+      instance.get(`/api/sections/${galleryId}`)
+        .then((response) => setSections(response.data))
+        .catch(error => console.error(error));
+    }, [setSections]);
 
-    </div>
-  );
+    
+    if(images === undefined) return null;
+
+    return (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {images.map((img, index) => (
+            <div key={index}>
+              <img
+                className="h-full w-full max-w-full rounded-lg object-cover object-center"
+                src={`${process.env.REACT_APP_BACKEND_BASE_URL}/api/images/${img.name}`}
+                alt="gallery-photo"
+              />
+            </div>
+          ))}
+        </div>
+      );
 };

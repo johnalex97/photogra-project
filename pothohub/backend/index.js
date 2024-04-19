@@ -1,6 +1,6 @@
-require("dotenv").config();
+//require("dotenv").config();
 const mongoose = require('mongoose');
-const seed = require('./seeddata/index');
+const { seed, insertImage } = require('./seeddata/index');
 const upload = require("./middleware/upload");
 const express = require("express");
 const app = express();
@@ -54,13 +54,28 @@ app.get("/api/sections", async (req, res) => {
     }
   });
 
-//Seed the database
-seed();
+  app.get("/api/sections/:name", async (req, res) => {
+    try {
+      const section = await Sections.findOne({ name: req.params.name });
+      res.json(section);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server Error");
+    }
+  });
+
 
 //Image upload
+
+
 app.post("/api/upload", upload.single("file"), async (req, res) => {
   try {
     if (req.file === undefined) return res.send("you must select a file.");
+    if(req.fileValidationError) {
+      return res.status(400).json({
+        message: req.fileValidationError,
+      });
+    }
     const imgUrl = `http://localhost:8080/file/${req.file.filename}`;
     res.send({
       message: "Uploaded",
@@ -101,7 +116,7 @@ async function get_image_by(bucketName, filterObject){
 app.get("/api/images/:name", async (req, res) => {
   try {
     const NAME = req.params.name;
-    let { metadata, bucket } = await get_image_by('photos', {filename: NAME});
+    let { metadata, bucket } = await get_image_by('photos', { filename: NAME });
     res = Object.assign(res, metadata)
     bucket.openDownloadStreamByName(NAME)
             .pipe(res);
@@ -110,3 +125,13 @@ app.get("/api/images/:name", async (req, res) => {
       res.send("images not found");
   }
 });
+
+//Seed the databas
+insertImage().then((res) => {
+  seed(res);
+  console.log('Success inserting images');
+})
+.catch(err => {
+  console.log('Error', err);
+});;
+
