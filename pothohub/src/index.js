@@ -1,13 +1,34 @@
 import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ErrorPage } from './components/errorpage';
+import { HomePage } from './components/homepage';
+import { Gallery } from './components/gallery';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [{
+      index: true,
+      element: <HomePage />,
+    },
+    {
+      path: "gallery/:galleryId",
+      element: <Gallery />,
+    },
+  ]
+  }
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+   <RouterProvider router={router} />
   </React.StrictMode>
 );
 
