@@ -1,4 +1,5 @@
 import React, { useState, useEffect }  from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import '../styles/tailwind.css';
 import '../styles/tailwindoutput.css';
@@ -25,11 +26,13 @@ export const Gallery = (props) => {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {images.map((img, index) => (
             <div key={index}>
-              <img
-                className="h-full w-full max-w-full rounded-lg object-cover object-center"
-                src={`${process.env.REACT_APP_BACKEND_BASE_URL}/api/images/${img.name}`}
-                alt="gallery-photo"
-              />
+                <Link to={`/carrousel/${img.section.toLowerCase()}`}>
+                    <img
+                        className="h-full w-full max-w-full rounded-lg object-cover object-center"
+                        src={`${process.env.REACT_APP_BACKEND_BASE_URL}/api/images/${img.name}`}
+                        alt="gallery-photo"
+                    />
+                </Link>
             </div>
           ))}
         </div>

@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { ErrorPage } from './components/errorpage';
 import { HomePage } from './components/homepage';
 import { Gallery } from './components/gallery';
+import { Carrousel } from './components/carrousel';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     {
       path: "gallery/:galleryId",
       element: <Gallery />,
+    },
+    {
+      path: "/carrousel/:galleryId",
+      element: <Carrousel />,
     },
   ]
   }
