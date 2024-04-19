@@ -6,6 +6,14 @@
         type: String,
         required: true,
     },
+    largeImage: {
+        type: String,
+        required: true,
+    },
+    smallImage: {
+        type: String,
+        required: true,
+    },
     creationDate: {
         type: Date,
         default: Date.now,

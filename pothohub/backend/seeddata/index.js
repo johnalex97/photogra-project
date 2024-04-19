@@ -1,5 +1,5 @@
   //Seeding
-  process.env.DEBUG = 'mongo-seeding';
+process.env.DEBUG = 'mongo-seeding';
 const { Seeder } = require('mongo-seeding');
 const sections = require('./models/sections/sections');
 const path = require('path');
