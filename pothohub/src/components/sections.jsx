@@ -1,14 +1,10 @@
 import React, { useState, useEffect }  from "react";
-import {useNavigate} from 'react-router-dom';
 import { Link } from "react-router-dom";
 import '../styles/tailwind.css';
 import '../styles/tailwindoutput.css';
 import axios from "axios";
 
 export const Sections = (props) => {
-    console.log(process.env);
-    const navigate = useNavigate();
-    const handleOnClick = () => navigate('/gallery/:galleryId');
 
     const [sections, setSections] = useState([]);
 
