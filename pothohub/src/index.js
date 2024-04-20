@@ -8,6 +8,7 @@ import { ErrorPage } from './components/errorpage';
 import { HomePage } from './components/homepage';
 import { Gallery } from './components/gallery';
 import { Carrousel } from './components/carrousel';
+import { ImageView } from './components/imageview';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     {
       path: "/carrousel/:galleryId",
       element: <Carrousel />,
+    },
+    {
+      path: "/image/:name",
+      element: <ImageView />,
     },
   ]
   }
