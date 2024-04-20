@@ -8,6 +8,11 @@ const Grid = require("gridfs-stream");
 const PORT = process.env.PORT || 5000;
 var mongo = require('mongodb');
 const { ObjectId } = require('mongodb');
+const jwt = require("jsonwebtoken");
+const User = require("./models/users");
+const Sections = require("./models/sections"); // Create the Sections model
+const bcrypt = require("bcrypt");
+var bodyParser = require('body-parser')
 
 mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true,
@@ -26,6 +31,11 @@ conn.once("open", function () {
 
 
   var cors = require('cors');
+  // parse application/x-www-form-urlencoded
+  app.use(bodyParser.urlencoded({ extended: false }))
+
+  // parse application/json
+  app.use(bodyParser.json())
 
   app.use(cors());
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
@@ -42,7 +52,7 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
-const Sections = require("./models/sections"); // Create the Sections model
+
 
 app.get("/api/sections", async (req, res) => {
     try {
@@ -124,6 +134,53 @@ app.get("/api/images/:name", async (req, res) => {
       console.error(error);
       res.send("images not found");
   }
+});
+
+app.post("/api/auth/register", async (req, res) => {
+  try {
+    const { email, password, name } = req.body;
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ error: "email already exists." });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const user = new User({
+      name,
+      email,
+      password: hashedPassword,
+    });
+
+    const savedUser = await user.save();
+    res.json({
+      message: "User registered successfully",
+      userId: savedUser._id,
+      name:savedUser.name
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.post("/api/auth/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) return res.status(400).send("Invalid email or password.");
+
+  const validPassword = await bcrypt.compare(password, user.password);
+
+  if (!validPassword)
+    return res.status(400).send("Invalid emial or password.");
+
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
+
+  res.send({ token, username: user.name });
 });
 
 //Seed the databas

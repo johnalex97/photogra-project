@@ -9,6 +9,9 @@ import { HomePage } from './components/homepage';
 import { Gallery } from './components/gallery';
 import { Carrousel } from './components/carrousel';
 import { ImageView } from './components/imageview';
+import { Login } from './components/loginForm';
+import { Registration } from './components/registration';
+import { AuthProvider } from './components/authContext';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +34,14 @@ const router = createBrowserRouter([
       path: "/image/:name",
       element: <ImageView />,
     },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <Registration />,
+    },
   ]
   }
 ]);
@@ -38,7 +49,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-   <RouterProvider router={router} />
+    <AuthProvider>
+        <RouterProvider router={router} />
+   </AuthProvider>
   </React.StrictMode>
 );
 
