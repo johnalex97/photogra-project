@@ -23,18 +23,20 @@ export const Gallery = (props) => {
     if(images === undefined) return null;
 
     return (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {images.map((img, index) => (
-            <div key={index}>
-                <Link to={`/carrousel/${img.section.toLowerCase()}`}>
-                    <img
-                        className="h-full w-full max-w-full rounded-lg object-cover object-center"
-                        src={`${process.env.REACT_APP_BACKEND_BASE_URL}/api/images/${img.name}`}
-                        alt="gallery-photo"
-                    />
-                </Link>
+        <div className="m-8">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+                {images.map((img, index) => (
+                    <div key={index}>
+                        <Link to={`/carrousel/${img.section.toLowerCase()}`}>
+                            <img
+                                className="h-full w-full max-w-full rounded-none object-cover object-center"
+                                src={`${process.env.REACT_APP_BACKEND_BASE_URL}/api/images/${img.name}`}
+                                alt={`gallery-photo ${index}`}
+                            />
+                        </Link>
+                    </div>
+                ))}
             </div>
-          ))}
         </div>
       );
 };

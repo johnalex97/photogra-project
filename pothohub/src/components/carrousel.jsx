@@ -1,5 +1,6 @@
 import React, { useState, useEffect }  from "react";
 import { Carousel,IconButton  } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import '../styles/tailwind.css';
 import '../styles/tailwindoutput.css';
@@ -26,12 +27,13 @@ export const Carrousel = (props) => {
         <div className="my-8 max-h-screen h-screen">
             <Carousel transition={{ duration: 2, type: "tween" }} loop={true} className="rounded-s">
             {images.map((img, index) => (
-
-                <img
-                src={`${process.env.REACT_APP_BACKEND_BASE_URL}/api/images/${img.name}`}
-                alt={`image ${index}`}
-                className="h-full w-full object-cover"
-        />
+                 <Link to={`/image/${img.name}`}>
+                    <img
+                        src={`${process.env.REACT_APP_BACKEND_BASE_URL}/api/images/${img.name}`}
+                        alt={`image ${index}`}
+                        className="h-full w-full object-cover"
+                    />
+                </Link>
             ))}
             </Carousel>
         </div>

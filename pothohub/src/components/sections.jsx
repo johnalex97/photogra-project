@@ -16,44 +16,47 @@ export const Sections = (props) => {
     }, []);
 
     const sectionElements = sections.map((sec, index)=>
-    <div class="grid grid-cols-2 gap-2" >
-
-        { index % 2 == 0 &&
-                <><div>
-                    <Link to={`gallery/${sec.name.toLowerCase()}`}>
-                        <img class="h-auto max-w-full rounded-lg" src={sec.largeImage} alt="" />
-                    </Link>
-                </div>
-                    
-                        <div class="flex">
-                            <div class="m-auto cursor-pointer">
-                                <Link to={`gallery/${sec.name.toLowerCase()}`}>
-                                    <h3 class="text-6xl font-bold">{sec.name}</h3>
-                                </Link>
-                                <button>leyenda</button>
+        <div class="grid grid-cols-2 gap-0" >
+                { index % 2 == 0 &&
+                    <><div>
+                        <Link to={`gallery/${sec.name.toLowerCase()}`}>
+                            <img class="h-auto max-w-full rounded-none" src={sec.largeImage} alt="" />
+                        </Link>
+                    </div>
+                        
+                            <div class="flex">
+                                <div class="m-auto cursor-pointer">
+                                    <Link to={`gallery/${sec.name.toLowerCase()}`}>
+                                        <h3 class="text-6xl font-bold">{sec.name}</h3>
+                                    </Link>
+                                    <button>leyenda</button>
+                                </div>
                             </div>
-                        </div>
-                    
-                </>
-        }
+                        
+                    </>
+            }
 
-        { index % 2 == 1 &&
-            <><div class="flex">
-                  <div class="m-auto cursor-pointer">
-                    <Link to={`gallery/${sec.name.toLowerCase()}`}>
-                        <h3 class="text-6xl font-bold">{sec.name}</h3>
-                    </Link>
-                    <button>leyenda</button>
-                  </div>
-              </div><div>
-                    <Link to={`gallery/${sec.name.toLowerCase()}`}>
-                      <img class="h-auto max-w-full rounded-lg object-contain"  src={sec.largeImage} alt="" />
-                    </Link>
-                  </div></>
-        }
+            { index % 2 == 1 &&
+                <><div class="flex">
+                    <div class="m-auto cursor-pointer">
+                        <Link to={`gallery/${sec.name.toLowerCase()}`}>
+                            <h3 class="text-6xl font-bold">{sec.name}</h3>
+                        </Link>
+                        <button>leyenda</button>
+                    </div>
+                </div><div>
+                        <Link to={`gallery/${sec.name.toLowerCase()}`}>
+                        <img class="h-auto max-w-full rounded-none object-contain"  src={sec.largeImage} alt="" />
+                        </Link>
+                    </div></>
+            }
 
-    </div>
+        </div>
     );
 
-    return sectionElements;
+    return (
+        <div className="m-14">
+            { sectionElements }
+        </div>
+        );
 };
