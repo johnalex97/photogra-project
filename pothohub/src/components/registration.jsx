@@ -38,6 +38,7 @@ export const Registration = () => {
         <p class="block mt-1 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
         Nice to meet you! Enter your details to register.
         </p>
+        {message && <p>{message}</p>}
         <form onSubmit={handleSubmit} class="max-w-screen-lg mx-auto mt-8 mb-2 w-80 sm:w-96">
         <div class="flex flex-col gap-6 mb-1">
         <h6

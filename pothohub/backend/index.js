@@ -1,6 +1,7 @@
 //require("dotenv").config();
 const mongoose = require('mongoose');
 const { seed, insertImage } = require('./seeddata/index');
+const { seedUser } = require('./seeddata/insert');
 const upload = require("./middleware/upload");
 const express = require("express");
 const app = express();
@@ -136,6 +137,24 @@ app.get("/api/images/:name", async (req, res) => {
   }
 });
 
+//Get images by user id 
+app.post("/api/user/images/", async (req, res) => {
+  try {
+    const userId = req.body.userId;
+    const sections = await Sections.find({});
+    const sectionsObj = JSON.parse(JSON.stringify(sections));
+
+    const images = sectionsObj.map((seccion) => {
+      return seccion.images.filter((img) => { return img.userId === userId});
+    });
+
+    res.json(images);
+  } catch (error) {
+      console.error(error);
+      res.send(`images for user ${ userId } not found`);
+  }
+});
+
 app.post("/api/auth/register", async (req, res) => {
   try {
     const { email, password, name } = req.body;
@@ -180,15 +199,19 @@ app.post("/api/auth/login", async (req, res) => {
 
   const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
 
-  res.send({ token, username: user.name });
+  res.send({ token, username: user.name, id: user.id });
 });
 
 //Seed the databas
-insertImage().then((res) => {
-  seed(res);
-  console.log('Success inserting images');
-})
-.catch(err => {
-  console.log('Error', err);
-});;
-
+seedUser('pedro@email.com', '12345678', 'Pedro').then((userData) => {
+  insertImage(userData.id).then((res) => {
+    console.log('Tryingto seeding images');
+    seed(res);
+    console.log('Success seeding images');
+  })
+  .catch(err => {
+    console.log('Error seeding images', err);
+  })
+}).catch(err => {
+  console.log('Error seeding user', err);
+});

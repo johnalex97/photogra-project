@@ -15,6 +15,7 @@ export const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null); // New state for handling error messages
   const { setToken } = useContext(AuthContext);
   const { setUserName } = useContext(AuthContext);
+  const { setUserId } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,15 +26,19 @@ export const Login = () => {
       });
       setToken(response.data.token);
       setUserName(response.data.username);
+      setUserId(response.data.id);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.username);
+      localStorage.setItem("userid", response.data.id);
       navigate("/");
     } catch (error) {
       console.error("Authentication failed:", error);
       setToken(null);
       setUserName(null);
+      setUserId(null);
       localStorage.removeItem("token");
       localStorage.removeItem("username");
+      localStorage.removeItem("userid");
       if (error.response && error.response.data) {
         setErrorMessage(error.response.data); // Set the error message if present in the error response
       } else {
@@ -53,6 +58,7 @@ export const Login = () => {
         <Typography className="mb-16 text-gray-600 font-normal text-[18px]">
           Enter your email and password to sign in
         </Typography>
+        {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}{" "}
         <form onSubmit={handleSubmit} className="mx-auto max-w-[24rem] text-left">
           <div className="mb-6">
             <label htmlFor="email">
