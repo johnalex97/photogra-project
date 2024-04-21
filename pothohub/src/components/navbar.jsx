@@ -51,9 +51,14 @@ export const NavBar = () => {
   </div>
   <div class="grow">
       { userName === null &&
-        <Link to={`/login`} className="bg-indigo-600 hover:bg-indigo-900 text-white font-bold py-2 px-4 rounded mt-4 lg:mt-0">
-          Entrar
-        </Link>
+        <div>
+          <Link to={`/login`} className="bg-indigo-600 hover:bg-indigo-900 text-white font-bold py-2 px-4 rounded mt-4 lg:mt-0">
+            Entrar
+          </Link>
+          <Link to={`/signup`} className="bg-red-600 ml-2 hover:bg-red-900 text-white font-bold py-2 px-4 rounded mt-4 lg:mt-0">
+            Crear Cuenta
+          </Link>
+        </div>
       }
       { userName !== null &&
       <div className=" md:flex-auto md:flex-row-reverse mt-2 flex-row flex">

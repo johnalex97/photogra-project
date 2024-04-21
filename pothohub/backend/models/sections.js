@@ -6,11 +6,19 @@
         type: String,
         required: true,
     },
+    displayname: {
+        type: String,
+        required: true,
+    },
     largeImage: {
         type: String,
         required: true,
     },
     smallImage: {
+        type: String,
+        required: true,
+    },
+    description: {
         type: String,
         required: true,
     },
