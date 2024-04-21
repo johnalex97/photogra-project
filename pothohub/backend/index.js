@@ -140,7 +140,6 @@ app.get("/api/images/:name", async (req, res) => {
 //Get images by user id 
 app.post("/api/user/images/", async (req, res) => {
   try {
-    console.log(req.body);
     const userId = req.body.userId;
     const sections = await Sections.find({});
     const sectionsObj = JSON.parse(JSON.stringify(sections));
@@ -149,7 +148,6 @@ app.post("/api/user/images/", async (req, res) => {
       return seccion.images.filter((img) => { return img.userId === userId});
     });
 
-    console.log(images);
     res.json(images);
   } catch (error) {
       console.error(error);
@@ -159,7 +157,6 @@ app.post("/api/user/images/", async (req, res) => {
 
 app.post("/api/auth/register", async (req, res) => {
   try {
-    console.log(req.body);
     const { email, password, name } = req.body;
 
     const existingUser = await User.findOne({ email });
@@ -207,8 +204,6 @@ app.post("/api/auth/login", async (req, res) => {
 
 //Seed the databas
 seedUser('pedro@email.com', '12345678', 'Pedro').then((userData) => {
-  console.log('Tryingto seeding images');
-  console.log(userData);
   insertImage(userData.id).then((res) => {
     console.log('Tryingto seeding images');
     seed(res);

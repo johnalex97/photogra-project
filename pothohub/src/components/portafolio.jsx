@@ -11,13 +11,11 @@ export const Portafolio = () => {
     const { userId } = useContext(AuthContext);
     const [ images, setImages ] = useState([]);
 
-    console.log(images);
     const imgs = [];
     images.map((arr) => {
         arr.map((i) => { imgs.push(i)});
     });
 
-    console.log(imgs);
     useEffect(() => {
         axios({
             method: 'post',
