@@ -49,7 +49,7 @@ export const Registration = () => {
             <input 
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Nombre"
+                placeholder="Pedro Paramo"
                 required
                 class="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50" />
             <label
@@ -63,7 +63,7 @@ export const Registration = () => {
             <input 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="email"
+                placeholder="pedro@email.com"
                 required
                 class="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50" />
             <label
@@ -95,7 +95,7 @@ export const Registration = () => {
         </button>
         <p class="block mt-4 font-sans text-base antialiased font-normal leading-relaxed text-center text-gray-700">
             Ya tienes una cuenta?
-            <Link to={`/login`} className="font-medium text-gray-900">
+            <Link to={`/login`} className="pl-2 font-medium text-red-900">
               Iniciar Session
             </Link>
         </p>
