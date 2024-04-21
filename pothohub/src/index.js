@@ -12,6 +12,7 @@ import { ImageView } from './components/imageview';
 import { Login } from './components/loginForm';
 import { Registration } from './components/registration';
 import { AuthProvider } from './components/authContext';
+import { Portafolio } from './components/portafolio';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
     {
       path: "/signup",
       element: <Registration />,
+    },
+    {
+      path: "/portafolio",
+      element: <Portafolio />,
     },
   ]
   }

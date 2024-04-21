@@ -3,9 +3,9 @@ process.env.DEBUG = 'mongo-seeding';
 const { Seeder } = require('mongo-seeding');
 const sections = require('./models/sections/sections');
 const path = require('path');
-const seedSectionImage = require('./insert');
+const { seedSectionImage } = require('./insert');
 
-async function insertImage() {
+async function insertImage(userId) {
   let images = {
     portraits: [],
     food: [],
@@ -14,7 +14,7 @@ async function insertImage() {
   };
   let portraitImagesNames = ['p1.jpg', 'p2.jpg', 'p3.jpg', 'p4.jpg', 'p5.jpg'];
   const promises = portraitImagesNames.map(async (name) => {
-    return await seedSectionImage(`public/media/${name}`, 'portraits');
+    return await seedSectionImage(`public/media/${name}`, 'portraits', userId);
   })
   images.portraits = await Promise.all(promises);
   return images;

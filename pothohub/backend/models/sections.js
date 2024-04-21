@@ -19,4 +19,6 @@
         default: Date.now,
     },
 });
-module.exports = mongoose.model("Sections", SectionsSchema);
+const Sections = mongoose.model("Sections", SectionsSchema);
+
+module.exports = Sections;
