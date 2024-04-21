@@ -137,6 +137,33 @@ app.get("/api/images/:name", async (req, res) => {
   }
 });
 
+//Get user by image
+app.get("/api/image/user/:name", async (req, res) => {
+  try {
+    const  name =  req.params.name;
+    const sections = await Sections.find({});
+    const sectionsObj = JSON.parse(JSON.stringify(sections));
+
+    let imgs =[];
+    sectionsObj.map((sec) => {
+        sec.images.map((img) => {
+          imgs.push(img);
+        })        
+    });
+
+    let img = imgs.find((img) => img.name == name);
+
+    if (img === undefined) return res.json(null);
+    const user = await Users.findOne({ _id:img.userId });
+    if (user === undefined) return res.json(null);
+    
+    res.json({ 'name': user.name, 'email': user.email });
+  } catch (error) {
+      console.error(error);
+      res.send(`images for user ${ userId } not found`);
+  }
+});
+
 //Get images by user id 
 app.post("/api/user/images/", async (req, res) => {
   try {
