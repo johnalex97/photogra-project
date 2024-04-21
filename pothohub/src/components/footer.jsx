@@ -9,9 +9,9 @@ export const Footer = (props) => {
                 <h3 class="font-bold text-xl text-indigo-600">Photohub</h3>
             </div>
             <div class="p-5">
-                <div class="text-sm uppercase text-indigo-600 font-bold">Productos</div>
-                <a class="my-3 block" href="/#">Alimentos <span class="text-teal-600 text-xs p-1"></span></a><a
-                    class="my-3 block" href="/#">Retratos <span class="text-teal-600 text-xs p-1"></span></a><a
+                <div class="text-sm uppercase text-indigo-600 font-bold">Retrato</div>
+                <a class="my-3 block" href="/#">Naturaleza <span class="text-teal-600 text-xs p-1"></span></a><a
+                    class="my-3 block" href="/#">Alimentos <span class="text-teal-600 text-xs p-1"></span></a><a
                     class="my-3 block" href="/#">Productos <span class="text-teal-600 text-xs p-1"></span></a>
             </div>
             <div class="p-5">
@@ -22,7 +22,7 @@ export const Footer = (props) => {
             <div class="p-5">
                 <div class="text-sm uppercase text-indigo-600 font-bold">Contactanos</div>
                 <a class="my-3 block" href="/#">Tegucigalpa, Honduras.
-                    <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">contact@photohub.com
+                    <span class="text-teal-600 text-xs p-1"></span></a><a class="my-3 block" href="/#">contacto@photohub.com
                     <span class="text-teal-600 text-xs p-1"></span></a>
             </div>
         </div>

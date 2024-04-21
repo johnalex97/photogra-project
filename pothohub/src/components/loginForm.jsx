@@ -53,10 +53,10 @@ export const Login = () => {
 <section className="grid text-center h-screen items-center p-8">
       <div>
         <Typography variant="h3" color="blue-gray" className="mb-2">
-          Sign In
+          Iniciar session
         </Typography>
         <Typography className="mb-16 text-gray-600 font-normal text-[18px]">
-          Enter your email and password to sign in
+          Ingrese su correo y contraseña para iniciar session
         </Typography>
         {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}{" "}
         <form onSubmit={handleSubmit} className="mx-auto max-w-[24rem] text-left">
@@ -66,7 +66,7 @@ export const Login = () => {
                 variant="small"
                 className="mb-2 block font-medium text-gray-900"
               >
-                Your Email
+                Correo Electronico
               </Typography>
             </label>
             <Input
@@ -77,7 +77,7 @@ export const Login = () => {
               size="lg"
               type="email"
               name="email"
-              placeholder="name@mail.com"
+              placeholder="pedro@email.com"
               className="w-full placeholder:opacity-100 focus:border-t-primary border-t-blue-gray-200"
               labelProps={{
                 className: "hidden",
@@ -90,7 +90,7 @@ export const Login = () => {
                 variant="small"
                 className="mb-2 block font-medium text-gray-900"
               >
-                Password
+                Contraseña
               </Typography>
             </label>
             <Input
@@ -115,7 +115,7 @@ export const Login = () => {
             />
           </div>
           <Button type="submit" color="gray" size="lg" className="mt-6" fullWidth>
-            sign in
+            Iniciar Session
           </Button>
 
           <Typography
@@ -123,9 +123,9 @@ export const Login = () => {
             color="gray"
             className="mt-4 text-center font-normal"
           >
-            Not registered?{" "}
+            Aun no tienes una cuenta?{" "}
             <Link to={`/signup`} className="font-medium text-gray-900">
-              Create account
+              Crear Cuenta
             </Link>
           </Typography>
         </form>

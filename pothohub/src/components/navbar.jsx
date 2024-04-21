@@ -31,17 +31,20 @@ export const NavBar = () => {
   <div class="grow-0 block lg:flex lg:items-center">
     <div class="text-sm lg:flex-grow">
       <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-indigo-600 mr-4">
-        Alimentos
+        Retrato
       </a>
       <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-indigo-600 mr-4">
-        Retratos
+        Naturaleza
+      </a>
+      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-indigo-600 mr-4">
+        Alimentos
       </a>
       <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-indigo-600 mr-4">
         Productos
       </a>
       { userId !== null &&
         <Link to={`/portafolio`} className="block mt-4 text-indigo-600 font-bold lg:inline-block lg:mt-0 text-black hover:text-indigo-600 text-bold">
-          My Portafolio
+          Mi Portafolio
         </Link>
       }
     </div>
@@ -49,7 +52,7 @@ export const NavBar = () => {
   <div class="grow">
       { userName === null &&
         <Link to={`/login`} className="bg-indigo-600 hover:bg-indigo-900 text-white font-bold py-2 px-4 rounded mt-4 lg:mt-0">
-          Login
+          Entrar
         </Link>
       }
       { userName !== null &&
