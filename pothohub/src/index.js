@@ -13,6 +13,7 @@ import { Login } from './components/loginForm';
 import { Registration } from './components/registration';
 import { AuthProvider } from './components/authContext';
 import { Portafolio } from './components/portafolio';
+import { MyAccountUpload } from './components/myaccountupload';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
     {
       path: "/portafolio",
       element: <Portafolio />,
+    },
+    {
+      path: "/portafolio/upload",
+      element: <MyAccountUpload />,
     },
   ]
   }

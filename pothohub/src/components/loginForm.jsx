@@ -53,10 +53,10 @@ export const Login = () => {
 <section className="grid text-center h-screen items-center p-8">
       <div>
         <Typography variant="h3" color="blue-gray" className="mb-2">
-          Iniciar session
+          Iniciar sesion
         </Typography>
         <Typography className="mb-16 text-gray-600 font-normal text-[18px]">
-          Ingrese su correo y contraseña para iniciar session
+          Ingrese su correo y contraseña para iniciar sesion
         </Typography>
         {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}{" "}
         <form onSubmit={handleSubmit} className="mx-auto max-w-[24rem] text-left">
@@ -115,7 +115,7 @@ export const Login = () => {
             />
           </div>
           <Button type="submit" color="gray" size="lg" className="mt-6" fullWidth>
-            Iniciar Session
+            Iniciar Sesion
           </Button>
 
           <Typography

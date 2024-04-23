@@ -13,7 +13,13 @@ const jwt = require("jsonwebtoken");
 const User = require("./models/users");
 const Sections = require("./models/sections"); // Create the Sections model
 const bcrypt = require("bcrypt");
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+const axios = require('axios');
+const FormData = require('form-data');
+const multer = require("multer");
+
+
+const uploadS = multer();
 
 mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true,
@@ -81,7 +87,8 @@ app.get("/api/sections", async (req, res) => {
 
 app.post("/api/upload", upload.single("file"), async (req, res) => {
   try {
-    if (req.file === undefined) return res.send("you must select a file.");
+    console.log(req.file);
+    if (req.file === null || req.file === undefined) return res.send("you must select a file.");
     if(req.fileValidationError) {
       return res.status(400).json({
         message: req.fileValidationError,
@@ -227,6 +234,36 @@ app.post("/api/auth/login", async (req, res) => {
   const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
 
   res.send({ token, username: user.name, id: user.id });
+});
+
+//POST new image
+app.post("/api/portafolio/upload", async (req, res) => {
+  try {
+    const category = req.body.category;
+    const userId = req.body.userId;
+    const userName = req.body.userName;
+    const caption = req.body.caption;
+
+    const section = await Sections.findOne({ name: category });
+    const sectionImagesBefore = section.images.length;
+    const newImage = {
+                        section: category, 
+                        name: req.body.imageName,
+                        id: req.body.imageId, 
+                        creationDate: new Date(),
+                        userId,
+                        userName,
+                        caption
+                      }
+    section.images.push(newImage);
+
+    const updatedSection = await section.save();
+    if (!(updatedSection.images.length > sectionImagesBefore)) return res.status(500).json({});
+    res.status(200).json({message: 'Nueva imagen agregada con exito', success: true});
+  } catch (error) {
+      console.error(error);
+      res.send(`Error during image upload`);
+  }
 });
 
 //Seed the databas

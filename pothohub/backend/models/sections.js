@@ -18,6 +18,10 @@
         type: String,
         required: true,
     },
+    images: {
+        type: [],
+        required: true,
+    },
     description: {
         type: String,
         required: true,
