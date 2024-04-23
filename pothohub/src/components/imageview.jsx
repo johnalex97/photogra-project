@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect }   from "react";
+import { Typography } from "@material-tailwind/react";
 import axios from "axios";
 import '../styles/tailwind.css';
 import '../styles/tailwindoutput.css';
@@ -28,11 +29,20 @@ export const ImageView = (props) => {
                 src={`${process.env.REACT_APP_BACKEND_BASE_URL}/api/images/${name}`}
                 alt="nature image"
             />
-            <div className="h-20 z-20 absolute top-0 left-0">
-                <FacebookShareButton url={`${process.env.REACT_APP_BACKEND_BASE_URL}/api/images/${name}`} />
-            </div>
-            <div className="">
-                <h1>{`Te gustael trabajo de ${user.name}? Contactalo a ${user.email}` }</h1>
+
+            <div>
+                <div className="h-20 z-20 absolute top-0 left-0">
+                    <FacebookShareButton url={`${process.env.REACT_APP_BACKEND_BASE_URL}/api/images/${name}`} />
+                </div>
+
+                <figcaption className="absolute bottom-8 left-2/4 flex w-[calc(100%-4rem)] -translate-x-2/4 justify-between rounded-xl border border-white bg-white/75 py-4 px-6 shadow-lg shadow-black/5 saturate-200 backdrop-blur-sm">
+                    <div>
+                    <Typography className="text-black font-bold text-center text font-xs bold">
+                         Te gusta el trabajo de {user.name}? Contactalo a 
+                         <a className="pl-2 text-red-600" href={`mailto:${user.email}?subject=Hola ${user.name}`}>{user.email}</a>
+                    </Typography>
+                    </div>
+                </figcaption>
             </div>
         </div>
       );

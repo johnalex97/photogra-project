@@ -1,5 +1,6 @@
 require("dotenv").config();
 const mongoose = require('mongoose');
+const { faker } = require('@faker-js/faker');
 const PORT = process.env.PORT || 5000;
 const { ObjectId } = require('mongodb');
 const axios = require('axios');
@@ -23,7 +24,7 @@ const seedUser = async (email, password, name) => {
     return { id: response.data.userId, name, email }
 }
 
-const seedSectionImage = async (imagePath, section, userId) => {
+const seedSectionImage = async (imagePath, section, userId, userName, caption) => {
     const image = await fs.readFile(imagePath);
 
     // Create a form and append image with additional fields
@@ -35,7 +36,7 @@ const seedSectionImage = async (imagePath, section, userId) => {
     const response = await axios.post(process.env.BASE_URL+'/api/upload', form, {
         headers: {},
     });
-    return { section, userId, id: response.data.id, name: response.data.name }
+    return { section, userId, id: response.data.id, name: response.data.name, userName, creationDate: faker.date.past({ years: 1 }), caption }
 }
 
 module.exports  = { seedSectionImage, seedUser };

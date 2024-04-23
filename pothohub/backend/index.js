@@ -230,8 +230,8 @@ app.post("/api/auth/login", async (req, res) => {
 });
 
 //Seed the databas
-seedUser('pedro@email.com', '12345678', 'Pedro').then((userData) => {
-  insertImage(userData.id).then((res) => {
+seedUser('pedro@email.com', '12345678', 'Pedro Paramo').then((userData) => {
+  insertImage(userData.id, userData.name).then((res) => {
     console.log('Tryingto seeding images');
     seed(res);
     console.log('Success seeding images');
