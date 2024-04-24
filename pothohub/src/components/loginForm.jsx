@@ -77,7 +77,7 @@ export const Login = () => {
               size="lg"
               type="email"
               name="email"
-              placeholder="pedro@email.com"
+              placeholder="alanturing@email.com"
               className="w-full placeholder:opacity-100 focus:border-t-primary border-t-blue-gray-200"
               labelProps={{
                 className: "hidden",

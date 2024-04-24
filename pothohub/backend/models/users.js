@@ -17,6 +17,22 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  messages: [
+    {
+      email: {
+        type: String,
+        required: false,
+      },
+      phone: {
+        type: String,
+        required: false,
+      },
+      body: {
+        type: String,
+        required: false,
+      }
+    }
+  ],
   tokens: [
     {
       token: {

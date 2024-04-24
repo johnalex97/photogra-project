@@ -62,7 +62,12 @@ export const NavBar = () => {
       }
       { userName !== null &&
       <div className=" md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
-        
+        <Link onClick={() => auth.logOut()} className="ml-2 bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded mt-4 lg:mt-0">
+          salir
+        </Link>
+        <Link to={`/portafolio/upload`} className="bg-indigo-600 hover:bg-indigo-900 text-white font-bold py-2 px-4 rounded mt-4 lg:mt-0">
+          Subir una foto
+        </Link>
         <div className="md:flex-auto md:flex-row-reverse mt-2 flex-row flex mr-4">
           <a className="flex font-bold">{userName}</a>
           <Link to={`/portafolio`}>
@@ -71,9 +76,7 @@ export const NavBar = () => {
           </svg>
           </Link>
           
-        <button onClick={() => auth.logOut()} className="flex text-black bg-transparent hover:text-red-700 font-bold rounded">
-          (salir)
-        </button>
+        
         </div>
       </div>
       }

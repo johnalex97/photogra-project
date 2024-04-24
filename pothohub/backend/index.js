@@ -267,7 +267,7 @@ app.post("/api/portafolio/upload", async (req, res) => {
 });
 
 //Seed the databas
-seedUser('pedro@email.com', '12345678', 'Pedro Paramo').then((userData) => {
+seedUser('alanturing@email.com', '12345678', 'Alan Turing').then((userData) => {
   insertImage(userData.id, userData.name).then((res) => {
     console.log('Tryingto seeding images');
     seed(res);
