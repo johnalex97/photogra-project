@@ -22,7 +22,7 @@ export const Registration = () => {
       });
       setMessage(response.data.message);
       setTimeout(() => {
-        navigate("/");
+        navigate("/login");
       }, "1000");
       
     } catch (error) {

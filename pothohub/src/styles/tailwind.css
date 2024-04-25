@@ -6,6 +6,11 @@
     flex: none;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+
 .inline-block {
     display: inline-block;
 }

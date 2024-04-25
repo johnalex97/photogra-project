@@ -39,13 +39,16 @@ export const Portafolio = () => {
                 <div className="m-8">
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
                         {imgs.map((img, index) => (
-                            <div key={index}>
+                            <div key={index} className="relative">
                                 <Link to={`/carrousel/${img.section.toLowerCase()}`}>
                                     <img
                                         className="h-full w-full max-w-full rounded-none object-cover object-center"
                                         src={`${process.env.REACT_APP_BACKEND_BASE_URL}/api/images/${img.name}`}
                                         alt={`gallery-photo ${index}`}
                                     />
+                                    <div className="bg-red-600 absolute text-white left-0 top-0 mt-2 ml-2 p-2 rounded">
+                                        {img.section}
+                                    </div>
                                 </Link>
                             </div>
                         ))}
