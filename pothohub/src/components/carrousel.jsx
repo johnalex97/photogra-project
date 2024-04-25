@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from "react";
-import { Carousel,IconButton  } from "@material-tailwind/react";
+import { Carousel  } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import '../styles/tailwind.css';
@@ -32,7 +32,7 @@ export const Carrousel = (props) => {
                         <img
                             src={`${process.env.REACT_APP_BACKEND_BASE_URL}/api/images/${img.name}`}
                             alt={`image ${index}`}
-                            className="h-full w-full object-cover"
+                            className="h-full w-full object-contain"
                         />
                     </Link>
                 ))}

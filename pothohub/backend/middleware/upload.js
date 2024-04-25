@@ -5,7 +5,7 @@ var randomstring = require("randomstring");
 
 const imageFilter = (req, file, cb) => {
     // Accept images only
-    console.log(file.originalname);
+   
     if (!file.originalname.toLowerCase().match(/\.(jpg|jpeg|png|gif)$/)) {
       // Create an error message to be returned in case validation fails
       req.fileValidationError = 'Invalid image format. Only jpeg, jpg, png and gif images are allowed.';

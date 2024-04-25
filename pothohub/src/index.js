@@ -56,7 +56,7 @@ const router = createBrowserRouter([
       element: <MyAccountUpload />,
     },
     {
-      path: "/user/contact",
+      path: "/user/contact/:artistEmail",
       element: <Contact />,
     },
     {
