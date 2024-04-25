@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Typography, Input, Button } from "@material-tailwind/react";
 import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
@@ -32,7 +32,6 @@ export const Login = () => {
       localStorage.setItem("userid", response.data.id);
       navigate("/");
     } catch (error) {
-      console.error("Authentication failed:", error);
       setToken(null);
       setUserName(null);
       setUserId(null);
@@ -46,6 +45,10 @@ export const Login = () => {
       }
     }
   };
+
+  useEffect(() => {
+    document.title = `Login`;
+  }, []);
 
   return (
     <div>

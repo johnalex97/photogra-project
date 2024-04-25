@@ -11,6 +11,7 @@
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
+    "file-saver": "^2.0.5",
     "jsonwebtoken": "^9.0.2",
     "mongo-seeding": "^4.0.0",
     "mongoose": "^8.3.1",

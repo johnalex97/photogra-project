@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
   },
   messages: [
     {
+      sender:{
+        type: String,
+        required: false,
+      },
       email: {
         type: String,
         required: false,
@@ -35,6 +39,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         required: false,
         default: false
+      },
+      date:{
+        type: Date,
+        required: true,
       }
     }
   ],

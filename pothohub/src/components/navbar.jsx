@@ -12,8 +12,7 @@ export const NavBar = () => {
   
   const baseURL = process.env.REACT_APP_BASE_URL;
   const currentURL = window.location.href;
-  console.log(baseURL);
-  console.log(currentURL);
+
   return (
 <nav class="flex c items-center justify-between flex-wrap bg-gray-100 p-6">
   
@@ -63,20 +62,20 @@ export const NavBar = () => {
   <div class="grow">
       { userName === null &&
         <div>
-          <Link to={`/login`} className="bg-indigo-600 hover:bg-indigo-900 text-white font-bold py-2 px-4 rounded mt-4 lg:mt-0">
+          <Link to={`/login`} className="bg-gray-300 hover:bg-teal-300 text-black font-bold py-2 px-4 rounded mt-4 lg:mt-0">
             Entrar
           </Link>
-          <Link to={`/signup`} className="bg-red-600 ml-2 hover:bg-red-900 text-white font-bold py-2 px-4 rounded mt-4 lg:mt-0">
+          <Link to={`/signup`} className="bg-gray-300 ml-2 hover:bg-teal-300 text-black font-bold py-2 px-4 rounded mt-4 lg:mt-0">
             Crear Cuenta
           </Link>
         </div>
       }
       { userName !== null &&
       <div className=" md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
-        <Link onClick={() => auth.logOut()} className="ml-2 bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded mt-4 lg:mt-0">
+        <Link onClick={() => auth.logOut()} className="ml-2 bg-gray-300 hover:bg-teal-300 text-black font-bold py-2 px-4 rounded mt-4 lg:mt-0">
           salir
         </Link>
-        <Link to={`/portafolio/upload`} className="bg-indigo-600 hover:bg-indigo-900 text-white font-bold py-2 px-4 rounded mt-4 lg:mt-0">
+        <Link to={`/portafolio/upload`} className="bg-gray-300 hover:bg-teal-300 text-black font-bold py-2 px-4 rounded mt-4 lg:mt-0">
           Subir una foto
         </Link>
 

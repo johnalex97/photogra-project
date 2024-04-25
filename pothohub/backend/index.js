@@ -87,7 +87,6 @@ app.get("/api/sections", async (req, res) => {
 
 app.post("/api/upload", upload.single("file"), async (req, res) => {
   try {
-    console.log(req.file);
     if (req.file === null || req.file === undefined) return res.send("you must select a file.");
     if(req.fileValidationError) {
       return res.status(400).json({
@@ -164,7 +163,8 @@ app.get("/api/image/user/:name", async (req, res) => {
     const user = await Users.findOne({ _id:img.userId });
     if (user === undefined) return res.json(null);
     
-    res.json({ 'name': user.name, 'email': user.email });
+    res.json({ 'name': user.name, 'email': user.email, section: img.section, creationDate: img.creationDate, caption: img.caption });
+
   } catch (error) {
       console.error(error);
       res.send(`images for user ${ userId } not found`);
@@ -193,31 +193,32 @@ app.post("/api/user/images/", async (req, res) => {
 app.get("/api/messages/user/:id", async (req, res) => {
   try {
     const userId =  req.params.id;
-    const user = await User.findOne({id:userId});
+    const user = await User.findOne({_id:userId});
     
-    if(!user)  res.send(`No messages found for user ${ userId }`);
+    if(!user)  return res.json({message: 'No se encontraron mensajes'});
     
-    res.json(user.messages);
+    res.send(user.messages);
   } catch (error) {
       console.error(error);
-      res.send(`No messages found for user ${ userId } not found`);
+      res.send(null);
   }
 });
+
 //Crea nuevo mensaje
 app.post("/api/user/message", async (req, res) => {
   try {
-    const { email, message, phone } = req.body;
+    const { sender, email, message, phone, artistEmail, name } = req.body;
+    
+    const user = await User.findOne({ email:artistEmail });
 
-    const existingUser = await User.findOne({ email });
-    if (!existingUser) {
+    if (!user) {
       return res.status(400).json({ error: "user with this email does not exists." });
     }
-
-    const user = await User.findOne({ email });
-    user.messages.push({ email, body: message, phone });
+  
+    user.messages.push({ email, body: message, phone, sender, date: new Date() });
     user.save();
 
-    res.json({});
+    res.json({message: 'El mensaje se envio correctamente'});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });

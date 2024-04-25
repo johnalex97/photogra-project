@@ -79,7 +79,6 @@ const collections = seeder.readCollectionsFromPath(
 const seed = async (imagesData) => {
   const sections = collections.find((col) => col.name == 'sections');
 
-  console.log(sections);
   sections.documents.forEach((sec) => {
     if (sec.name == 'portraits'){
       sec.images = imagesData['portraits'];
@@ -103,8 +102,6 @@ const seed = async (imagesData) => {
       sec.images = imagesData['nature'];
     }
   });
-
-  console.log(sections);
 
   seeder
     .import(collections)

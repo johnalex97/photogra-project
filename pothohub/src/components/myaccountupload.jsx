@@ -62,7 +62,6 @@ export const MyAccountUpload = () => {
     };
 
     function handleOnChange(e) {
-      //console.log(e.target.files);
       setFile(e.target.files[0]);
 
       const newFile = new FileReader;
