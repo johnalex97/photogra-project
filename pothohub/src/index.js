@@ -14,6 +14,9 @@ import { Registration } from './components/registration';
 import { AuthProvider } from './components/authContext';
 import { Portafolio } from './components/portafolio';
 import { MyAccountUpload } from './components/myaccountupload';
+import { Contact } from './components/contact';
+import { Messages } from './components/messages';
+
 
 const router = createBrowserRouter([
   {
@@ -51,6 +54,14 @@ const router = createBrowserRouter([
     {
       path: "/portafolio/upload",
       element: <MyAccountUpload />,
+    },
+    {
+      path: "/user/contact",
+      element: <Contact />,
+    },
+    {
+      path: "/user/messages",
+      element: <Messages />,
     },
   ]
   }

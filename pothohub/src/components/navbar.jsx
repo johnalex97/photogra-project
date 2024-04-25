@@ -6,10 +6,14 @@ import '../styles/tailwind.css';
 import '../styles/tailwindoutput.css';
 
 export const NavBar = () => {
-  
+  //const [modalShow, setModalShow] = useState(false);
   const auth = useAuth();
   const { userName, userId } = useContext(AuthContext);
-
+  
+  const baseURL = process.env.REACT_APP_BASE_URL;
+  const currentURL = window.location.href;
+  console.log(baseURL);
+  console.log(currentURL);
   return (
 <nav class="flex c items-center justify-between flex-wrap bg-gray-100 p-6">
   
@@ -30,22 +34,29 @@ export const NavBar = () => {
   </div>
   <div class="grow-0 block lg:flex lg:items-center">
     <div class="text-sm lg:flex-grow">
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-indigo-600 mr-4">
+      <a href={baseURL+'/gallery/portraits'} class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-indigo-600 mr-4">
         Retrato
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-indigo-600 mr-4">
+      <a href={baseURL+'/gallery/nature'} class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-indigo-600 mr-4">
         Naturaleza
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-indigo-600 mr-4">
+      <a href={baseURL+'/gallery/food'} class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-indigo-600 mr-4">
         Alimentos
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-indigo-600 mr-4">
+      <a href={ baseURL+'/gallery/products'} class="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-indigo-600 mr-4">
         Productos
       </a>
       { userId !== null &&
-        <Link to={`/portafolio`} className="block mt-4 text-indigo-600 font-bold lg:inline-block lg:mt-0 text-black hover:text-indigo-600 text-bold">
-          Mi Portafolio
-        </Link>
+      <>
+          <Link to={`/portafolio`} className="block mt-4 text-indigo-600 font-bold lg:inline-block lg:mt-0 text-black hover:text-indigo-600 text-bold mr-4">
+            Mi Portafolio
+          </Link>
+          
+          <Link to={`/user/messages/`} className="block mt-4 text-indigo-600 font-bold lg:inline-block lg:mt-0 text-black hover:text-indigo-600 text-bold">
+            Mensajes
+          </Link>
+          
+        </>
       }
     </div>
   </div>
@@ -62,7 +73,14 @@ export const NavBar = () => {
       }
       { userName !== null &&
       <div className=" md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
-        
+        <Link onClick={() => auth.logOut()} className="ml-2 bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded mt-4 lg:mt-0">
+          salir
+        </Link>
+        <Link to={`/portafolio/upload`} className="bg-indigo-600 hover:bg-indigo-900 text-white font-bold py-2 px-4 rounded mt-4 lg:mt-0">
+          Subir una foto
+        </Link>
+
+
         <div className="md:flex-auto md:flex-row-reverse mt-2 flex-row flex mr-4">
           <a className="flex font-bold">{userName}</a>
           <Link to={`/portafolio`}>
@@ -70,11 +88,8 @@ export const NavBar = () => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
           </svg>
           </Link>
-          
-        <button onClick={() => auth.logOut()} className="flex text-black bg-transparent hover:text-red-700 font-bold rounded">
-          (salir)
-        </button>
         </div>
+
       </div>
       }
   </div>

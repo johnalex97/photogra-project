@@ -189,6 +189,42 @@ app.post("/api/user/images/", async (req, res) => {
   }
 });
 
+//Lee mensajes  de un fotografo
+app.get("/api/messages/user/:id", async (req, res) => {
+  try {
+    const userId =  req.params.id;
+    const user = await User.findOne({id:userId});
+    
+    if(!user)  res.send(`No messages found for user ${ userId }`);
+    
+    res.json(user.messages);
+  } catch (error) {
+      console.error(error);
+      res.send(`No messages found for user ${ userId } not found`);
+  }
+});
+//Crea nuevo mensaje
+app.post("/api/user/message", async (req, res) => {
+  try {
+    const { email, message, phone } = req.body;
+
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
+      return res.status(400).json({ error: "user with this email does not exists." });
+    }
+
+    const user = await User.findOne({ email });
+    user.messages.push({ email, body: message, phone });
+    user.save();
+
+    res.json({});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
 app.post("/api/auth/register", async (req, res) => {
   try {
     const { email, password, name } = req.body;
@@ -208,6 +244,7 @@ app.post("/api/auth/register", async (req, res) => {
     });
 
     const savedUser = await user.save();
+    
     res.json({
       message: "User registered successfully",
       userId: savedUser._id,
@@ -267,7 +304,7 @@ app.post("/api/portafolio/upload", async (req, res) => {
 });
 
 //Seed the databas
-seedUser('pedro@email.com', '12345678', 'Pedro Paramo').then((userData) => {
+seedUser('alanturing@email.com', '12345678', 'Alan Turing').then((userData) => {
   insertImage(userData.id, userData.name).then((res) => {
     console.log('Tryingto seeding images');
     seed(res);

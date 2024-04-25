@@ -18,10 +18,11 @@ export const Registration = () => {
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_BASE_URL}/api/auth/register`, {
         email,
         password,
+        name
       });
       setMessage(response.data.message);
       setTimeout(() => {
-        navigate("/");
+        navigate("/login");
       }, "1000");
       
     } catch (error) {
@@ -49,7 +50,7 @@ export const Registration = () => {
               <input 
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Pedro Paramo"
+                  placeholder="Alan Turing"
                   required
                   class="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50" />
               <label
@@ -63,7 +64,7 @@ export const Registration = () => {
             <input 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="pedro@email.com"
+                placeholder="alanturing@email.com"
                 required
                 class="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent !border-t-blue-gray-200 bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:!border-t-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50" />
             <label
